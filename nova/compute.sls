@@ -147,6 +147,13 @@ ceph_virsh_secret_set_value:
   - require:
     - cmd: ceph_virsh_secret_define
 
+{% set ceph_backend_mon_host = pillar['nova']['compute']['ceph']['ceph_host'] %}
+{% set ceph_backend_mon_port = pillar['nova']['compute']['ceph']['ceph_port'] %}
+{% set ceph_cluster = pillar['nova']['compute']['ceph']['cluster'] %}
+{% set ceph_user = 'nova' %}
+{% set ceph_key = pillar['nova']['compute']['ceph']['client_cinder_key'] %}
+{% include "ceph_backend/init.sls" %}
+
 {% endif %}
 
 {%- if compute.libvirt_bin is defined %}
