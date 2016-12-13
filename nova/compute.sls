@@ -142,16 +142,16 @@ ceph_virsh_secret_define:
 
 ceph_virsh_secret_set_value:
   cmd.run:
-  - name: "virsh secret-set-value --secret {{ compute.ceph.secret_uuid }} --base64 {{ compute.ceph.client_cinder_key }} "
-  - unless: "virsh secret-get-value {{ compute.ceph.secret_uuid }} | grep {{ compute.ceph.client_cinder_key }}"
+  - name: "virsh secret-set-value --secret {{ compute.ceph.secret_uuid }} --base64 {{ compute.ceph.client_nova_key }} "
+  - unless: "virsh secret-get-value {{ compute.ceph.secret_uuid }} | grep {{ compute.ceph.client_nova_key }}"
   - require:
     - cmd: ceph_virsh_secret_define
 
 {% set ceph_backend_mon_host = pillar['nova']['compute']['ceph']['ceph_host'] %}
 {% set ceph_backend_mon_port = pillar['nova']['compute']['ceph']['ceph_port'] %}
 {% set ceph_cluster = pillar['nova']['compute']['ceph']['cluster'] %}
-{% set ceph_user = 'nova' %}
-{% set ceph_key = pillar['nova']['compute']['ceph']['client_cinder_key'] %}
+{% set ceph_user = pillar['nova']['compute']['ceph']['rbd_user'] %}
+{% set ceph_key = pillar['nova']['compute']['ceph']['client_nova_key'] %}
 {% include "ceph_backend/init.sls" %}
 
 {% endif %}
