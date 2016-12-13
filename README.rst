@@ -219,7 +219,7 @@ Nova with ephemeral configured with Ceph
           rbd_pool: nova
           rbd_user: nova
           secret_uuid: 03006edd-d957-40a3-ac4c-26cd254b3731
-          client_cinder_key: AQAqvDZYV7wxOxAAllhrG3lbL9wggjgUHKJ3MQ==
+          client_nova_key: AQAqvDZYV7wxOxAAllhrG3lbL9wggjgUHKJ3MQ==
           cluster: ${_param:ceph_cluster}
           ceph_host: ${_param:ceph_backend_mon_host}
           ceph_port: ${_param:ceph_backend_mon_port}
